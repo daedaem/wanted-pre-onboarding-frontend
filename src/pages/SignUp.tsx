@@ -27,12 +27,14 @@ const SignUp = () => {
     inputDataBlurHandler: passwordBlurHandler,
   } = useInput(validatePassword);
 
+  const isFormValid = emailValid && passwordValid;
+
   const inputDataSubmitHandler = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
 
-    if (!emailValid || !passwordValid) return;
+    if (!isFormValid) return;
 
     const { success, error } = await signup({ email, password });
     if (success) {
@@ -44,10 +46,7 @@ const SignUp = () => {
   };
 
   const signUpBtn = (
-    <button
-      data-testid="signup-button"
-      disabled={!emailValid || !passwordValid}
-    >
+    <button data-testid="signup-button" disabled={!isFormValid}>
       회원가입
     </button>
   );

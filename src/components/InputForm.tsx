@@ -4,12 +4,12 @@ const InputForm = ({
   id,
   type,
   value,
-  onChange,
-  onBlur,
   label,
   error,
   errorMessage,
   inputTestId,
+  onChange,
+  onBlur,
 }: useInputFormProps) => {
   return (
     <>

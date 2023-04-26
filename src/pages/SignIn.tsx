@@ -27,11 +27,13 @@ const SignIn = () => {
     inputDataBlurHandler: passwordBlurHandler,
   } = useInput(validatePassword);
 
+  const isFormValid = emailValid && passwordValid;
+
   const inputDataSubmitHandler = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-    if (!emailValid || !passwordValid) return;
+    if (!isFormValid) return;
 
     const { success, error } = await signin({ email, password });
     if (success) {
@@ -46,7 +48,7 @@ const SignIn = () => {
     <button
       data-testid="signin-button"
       className={classes.btn}
-      disabled={!emailValid || !passwordValid}
+      disabled={!isFormValid}
     >
       로그인
     </button>
