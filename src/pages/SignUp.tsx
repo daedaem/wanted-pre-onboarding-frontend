@@ -3,6 +3,11 @@ import classes from "./SignUp.module.css";
 import { signup } from "../api/authApi";
 import { validateEmail, validatePassword } from "../utils/validator";
 import useInput from "../hooks/useInput";
+import InputForm from "../components/InputForm";
+import {
+  emailErrorMessage,
+  passWordErrorMessage,
+} from "../constants/errorMessages";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -41,7 +46,6 @@ const SignUp = () => {
   const signUpBtn = (
     <button
       data-testid="signup-button"
-      className={classes.btn}
       disabled={!emailValid || !passwordValid}
     >
       회원가입
@@ -49,37 +53,31 @@ const SignUp = () => {
   );
 
   return (
-    <section className={classes.signup_frame}>
+    <section className={classes["signUp-frame"]}>
       <h1>SignUp</h1>
       <form onSubmit={inputDataSubmitHandler} className={classes.form}>
-        <label htmlFor="email">Email address</label>
-        <input
-          type="text"
+        <InputForm
           id="email"
+          type="text"
           value={email}
-          data-testid="email-input"
+          inputTestId="email-input"
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
+          label="Email address"
+          error={emailInputInvalid}
+          errorMessage={emailErrorMessage}
         />
-        {emailInputInvalid && (
-          <div className={classes.errors}>
-            "공백없이 @를 포함한 올바른 이메일 주소를 입력해주세요."
-          </div>
-        )}
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
+        <InputForm
           id="password"
+          type="text"
           value={password}
-          data-testid="password-input"
+          inputTestId="password-input"
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
+          label="Password"
+          error={passwordInputInvalid}
+          errorMessage={passWordErrorMessage}
         />
-        {passwordInputInvalid && (
-          <div className={classes.errors}>
-            "공백없이 8글자 이상의 비밀번호를 입력해주세요."
-          </div>
-        )}
         {signUpBtn}
       </form>
     </section>

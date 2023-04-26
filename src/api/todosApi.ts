@@ -1,6 +1,6 @@
 import { TodoItem } from "../types/todos";
 import { getToken } from "../utils/token";
-import { TODO_BASE_URL } from "./const";
+import { TODO_BASE_URL } from "./baseUrl";
 
 export const getTodos = async (): Promise<TodoItem[]> => {
   try {

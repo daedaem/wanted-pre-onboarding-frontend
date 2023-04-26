@@ -1,4 +1,4 @@
-import { AUTH_BASE_URL } from "./const";
+import { AUTH_BASE_URL } from "./baseUrl";
 import { UserInfo } from "../types/user";
 import { setToken } from "../utils/token";
 
